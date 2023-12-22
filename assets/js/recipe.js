@@ -1,8 +1,8 @@
-import { API_KEY } from "./config.js";
-import { APP_ID } from "./config.js";
+import { RECIPE_API_KEY } from "./config.js";
+import { RECIPE_APP_ID } from "./config.js";
 
 function fetchRecipes(queryString, queryFilters) {
-  let url = `https://api.edamam.com/search?q=${queryString}&app_id=${APP_ID}&app_key=${API_KEY}`;
+  let url = `https://api.edamam.com/search?q=${queryString}&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}`;
   if (queryFilters && Object.keys(queryFilters).length > 0) {
     const filterParams = Object.entries(queryFilters)
       .map(([key, value]) => `${key}=${value}`)
