@@ -3,20 +3,9 @@ body {
     margin: 0;
     padding: 0;
 }
-navbar-brand{
-    font-size: 25px;
+.bg-custom{
+    background-color: rgb(245, 186, 227);
 }
-nav ul {
-    list-style-type: none;
-    padding: 0;
+#filter-options{
+    color: black;
 }
-
-nav li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav a {
-    color: rgb(13, 12, 12);
-}
-
