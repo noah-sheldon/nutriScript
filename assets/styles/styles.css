@@ -11,6 +11,11 @@ body {
     padding-bottom: 12rem;
 }
 .search-bar {
-    padding-top: 15rem;
+    padding-top: 10rem;
     
+}
+.title{
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 8rem;
 }
