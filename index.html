@@ -17,10 +17,10 @@
     </header>
 
     <main>
-        <aside>
+     
             <div class="container-fluid">
                 <div class="row flex-nowrap">
-                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-custom">
+                    <aside class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-custom">
                         <div class="d-flex flex-column align-items-center align-items-sm-center px-3 pt-2 text-white min-vh-100">
                             <a class="d-flex align-items-center text-black text-decoration-none">
                                 <span class="fs-5 d-none d-sm-inline">Filters</span>
@@ -60,13 +60,17 @@
                                 </a>
                             </div>
                         </div>
+                    </aside>
+                    
+                    <div class="col search-bar">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
                     </div>
-                    <div class="col py-3">
-                        Content area...
-                    </div>
+                    
                 </div>
             </div>
-        </aside>
     </main>
 
     <footer>
