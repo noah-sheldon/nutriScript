@@ -41,4 +41,16 @@ body {
     align-items: center;
     margin: 0;
     flex-direction: row;
+    padding-bottom: 2rem;
+}
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Additional styling if needed */
+.card {
+    margin-bottom: 20px;
 }
