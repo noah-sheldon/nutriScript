@@ -19,3 +19,9 @@ body {
     font-size: 4rem;
     padding-bottom: 8rem;
 }
+.centered-icon {
+    position: absolute;
+    top: 33%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+}
