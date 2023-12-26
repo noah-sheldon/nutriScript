@@ -19,9 +19,42 @@ function fetchRecipes(queryString, queryFilters) {
     });
 }
 
-fetchRecipes("pasta", {
-  diet: "high-protein",
-  calories: "800",
-  health: "peanut-free",
-  health: "gluten-free",
+// fetchRecipes("pasta", {
+//   diet: "high-protein",
+//   calories: "800",
+//   health: "peanut-free",
+//   health: "gluten-free",
+// });
+
+$(document).ready(function () {
+  $("#allergiesSelect").change(function () {
+    var selectedAllergies = $(this).val();
+    console.log(selectedAllergies);
+  });
+});
+
+$(document).ready(function () {
+  $("#dietsSelect").change(function () {
+    var selectedDiets = $(this).val();
+    console.log(selectedDiets);
+  });
+});
+
+$(document).ready(function () {
+  $("#caloriesRange").change(function () {
+    var selectedCalorie = $(this).val();
+    console.log(selectedCalorie);
+  });
+});
+
+$(document).ready(function () {
+  $("#searchRecipe").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $("#recipe").val().trim();
+    if (recipeInput) {
+      fetchRecipes(recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
 });
