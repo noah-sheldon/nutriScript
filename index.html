@@ -7,23 +7,38 @@
     <title>nutriScript</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <script>
-        function show(shown, hidden) {
-            document.getElementById(shown).style.display = 'block';
-            document.getElementById(hidden).style.display = 'none';
+        function show(shown) {
+            if (shown === "recipePage") {
+                document.getElementById(shown).style.display = 'block';
+            } else {
+                document.getElementById("recipePage").style.display = 'none';
+            }
+            if (shown === "homePage") {
+                document.getElementById(shown).style.display = 'block';
+            } else {
+                document.getElementById("homePage").style.display = 'none';
+            }
+            if (shown === "nutritionPage") {
+                document.getElementById(shown).style.display = 'block';
+            } else {
+                document.getElementById("nutritionPage").style.display = 'none';
+            }
             return false;
         }
     </script>
 </head>
 
-<body>
+<body">
     <!--header -->
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand text-white fw-bold"  onclick="return show('homePage','recipePage');" href="#">nutri<span
-                        style="color: rgb(255, 174, 0)">S</span>cript</a>
+                <a class="navbar-brand text-white fw-bold" onclick="return show('homePage','recipePage');"
+                    href="#">nutri<span style="color: rgb(255, 174, 0)">S</span>cript</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +47,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" onclick="return show('recipePage','homePage');" >Recipe Search</a>
+                            <a class="nav-link text-white" href="#" onclick="return show('recipePage');">Recipe
+                                Search</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Nutrition Check</a>
+                            <a class="nav-link text-white" href="#" onclick="return show('nutritionPage');">Nutrition
+                                Check</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Contact Us</a>
                         </li>
 
                 </div>
@@ -44,15 +67,16 @@
 
     </header>
 
-    <section id ="homePage">
+    <section id="homePage">
         <div class="container-fluid home-container">
             <div class="content">
                 <h1 class="text-center">Welcome to nutri<span style="color: rgb(255, 174, 0)">S</span>cript</h1>
                 <p>Explore a recipe database containing over 2.3 million recipes with comprehensive nutrition analysis
                     for
                     each recipe! </p>
-                <a href="#" onclick="return show('recipePage','homePage');" class="btn btn-success">Recipe Search</a>
-                <a href="#" class="btn btn-success">Nutrition Check</a>
+                <a href="#" onclick="return show('recipePage');" class="btn btn-success">Recipe Search</a>
+                <a href="#" onclick="return show('nutritionPage');" class="btn btn-success">Nutrition
+                    Check</a>
             </div>
         </div>
     </section>
@@ -61,145 +85,189 @@
 
     <section id="recipePage" style="display:none">
 
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
-                <aside class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-custom">
-                    <div
-                        class="d-flex flex-column align-items-center align-items-sm-center px-3 pt-2 text-white min-vh-100">
-                        <a class="d-flex align-items-center text-black text-decoration-none">
-                            <span class="filters-title">Filters</span>
-                        </a>
-                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                            id="menu">
-                            <div class="dropdown-center">
-                                <div class="dropdown-toggle" id="filter-options" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Allergies
-                                </div>
-                            </div>
-                            <div class="dropdown-center">
-                                <div class="dropdown-toggle" id="filter-options" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Diets
-                                </div>
-                            </div>
-                            <div class="dropdown-center">
-                                <div class="dropdown-toggle" id="filter-options" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Calories
-                                </div>
-                            </div>
-                        </ul>
-                        <hr>
-                        <div class="pb-4">
-                            <a href="#" class="d-flex align-items-center text-black text-decoration-none" id="contacts"
-                                aria-expanded="false">
-                                <span class="d-none d-sm-inline mx-1">About Us</span>
-                            </a>
-                        </div>
-                        <div class="pb-4">
-                            <a href="#" class="d-flex align-items-center text-black text-decoration-none" id="contacts"
-                                aria-expanded="false">
-                                <span class="d-none d-sm-inline mx-1">Contact Us</span>
-                            </a>
-                        </div>
-                    </div>
-                </aside>
-                <div class="col search-bar">
-                    <h1 class="title"> Nutri Script</h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" fill="currentColor"
-                        class="bi bi-search centered-icon" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg>
-                    <h2 class="sub-title">Find the recipes you love!</h2>
+        <div class="container">
+            <div class="row mt-5">
+                <!-- Filters Div -->
+                <div class="col-md-3">
+                    <!-- Filters Section with Collapse -->
+                    <div class="filters">
+                        <h5 class="text-center text-white fw-bold">
+                            Filters
+                        </h5>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg></span>
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </div>
-                    <div class="button">
-                        <button type="button" class="btn btn-outline-primary">300 cal</button>
-                        <button type="button" class="btn btn-outline-primary">Gluten-free</button>
-                        <button type="button" class="btn btn-outline-primary">Nut-free</button>
-                    </div>
+                        <div class="collapse show" id="filterContent">
+                            <!-- Allergies Dropdown -->
+                            <div class="form-group mt-3">
+                                <label for="allergiesSelect" class="text-white">Allergies</label>
+                                <select class="form-control selectpicker" id="allergiesSelect" multiple
+                                    data-live-search="true">
+                                    <option value="celery-free">Celery-free</option>
+                                    <option value="crustacean-free">Crustacean-free</option>
+                                    <option value="dairy-free">Dairy-free</option>
+                                    <option value="egg-free">Egg-free</option>
+                                    <option value="fish-free">Fish-free</option>
+                                    <option value="gluten-free">Gluten-free</option>
+                                    <option value="lupine-free">Lupine-free</option>
+                                    <option value="mustard-free">Mustard-free</option>
+                                    <option value="peanut-free">Peanut-free</option>
+                                    <option value="sesame-free">Sesame-free</option>
+                                    <option value="shellfish-free">Shellfish-free</option>
+                                    <option value="soy-free">Soy-free</option>
+                                    <option value="tree-nut-free">Tree-Nut-free</option>
+                                    <option value="wheat-free">Wheat-free</option>
+                                </select>
+                            </div>
 
+                            <!-- Diets Dropdown -->
+                            <div class="form-group  mt-3">
+                                <label for="dietsSelect" class="text-white">Diets</label>
+                                <select class="form-control selectpicker" id="dietsSelect" multiple
+                                    data-live-search="true">
+                                    <option value="alcohol-free">Alcohol-free</option>
+                                    <option value="balanced">Balanced</option>
+                                    <option value="high-fiber">High-Fiber</option>
+                                    <option value="high-protein">High-Protein</option>
+                                    <option value="keto">Keto</option>
+                                    <option value="kidney-friendly">Kidney friendly</option>
+                                    <option value="kosher">Kosher</option>
+                                    <option value="low-carb">Low-Carb</option>
+                                    <option value="low-fat">Low-Fat</option>
+                                    <option value="low-potassium">Low potassium</option>
+                                    <option value="low-sodium">Low-Sodium</option>
+                                    <option value="no-oil-added">No oil added</option>
+                                    <option value="no-sugar">No-sugar</option>
+                                    <option value="paleo">Paleo</option>
+                                    <option value="pescatarian">Pescatarian</option>
+                                    <option value="pork-free">Pork-free</option>
+                                    <option value="red-meat-free">Red meat-free</option>
+                                    <option value="sugar-conscious">Sugar-conscious</option>
+                                    <option value="vegan">Vegan</option>
+                                    <option value="vegetarian">Vegetarian</option>
 
-                    <div class="cards">
-                        <div class="card border-secondary mb-3" style="max-width: 800px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="image recipe one">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Recipe 1</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-                                </div>
+                                </select>
+                            </div>
+
+                            <!-- Calories Slider -->
+                            <div class="form-group mt-3">
+                                <label for="caloriesRange" class="text-white">Calories</label>
+                                <input type="range" class="form-control-range mt-3 ms-3" id="caloriesRange"
+                                    name="calories" min="1" max="5000" value="1"
+                                    oninput="caloriesValue.value = caloriesRange.value">
+                                <output class="ms-3" id="caloriesValue" name="caloriesValue" for="calories">1</output>
                             </div>
                         </div>
                     </div>
-                    <div class="cards">
-                        <div class="card border-secondary mb-3" style="max-width: 800px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="image recipe two">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Recipe 2</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+                <div class="col-md-9">
+                    <form class="form-inline d-flex  mt-5">
+                        <div class="form-group mb-2 me-5 ms-3">
+                            <input type="text" class="form-control" id="recipe" placeholder="Search for recipes!">
                         </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card border-secondary mb-3" style="max-width: 800px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="image recipe one">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Recipe 1</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card border-secondary mb-3" style="max-width: 800px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="image recipe two">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Recipe 2</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-success mb-2">Submit</button>
+                    </form>
+                    <div class="most-searched mt-3">
+                        <h5>
+                            Most Searched
+                        </h5>
+                        <button type="button" class="btn btn-outline-primary me-2 ms-5">Pasta</button>
+                        <button type="button" class="btn btn-outline-primary me-2">Cake</button>
+                        <button type="button" class="btn btn-outline-primary me-2">Mushroom</button>
+                        <button type="button" class="btn btn-outline-primary me-2">Chicken</button>
+
                     </div>
 
+                    <div id="recipesDiv">
+
+                    </div>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- <div class="cards">
+                <div class="card border-secondary mb-3" style="max-width: 800px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="image recipe one">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Recipe 1</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a
+                                    natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card border-secondary mb-3" style="max-width: 800px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="image recipe two">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Recipe 2</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a
+                                    natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card border-secondary mb-3" style="max-width: 800px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="image recipe one">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Recipe 1</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a
+                                    natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card border-secondary mb-3" style="max-width: 800px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="image recipe two">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Recipe 2</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a
+                                    natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </section>
+
+    <section id="nutritionPage" style="display:none">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group mt-3">
+                        <label for="ingredientTextArea">Enter Ingredients</label>
+                        <textarea class="form-control" id="ingredientTextArea" rows="5" placeholder="1 cup rice,
+10 oz chickpeas"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3" id="submitBtn">Analyse Ingredients!</button>
+                </form>
             </div>
         </div>
     </section>
@@ -207,14 +275,18 @@
     <footer>
 
     </footer>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="./assets/js/index.js"></script>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="./assets/js/index.js"></script>
 
 </html>
