@@ -163,8 +163,29 @@
                         <div class="form-group mb-2 me-5 ms-3">
                             <input type="text" class="form-control" id="recipe" placeholder="Search for recipes!">
                         </div>
-                        <button type="submit" class="btn btn-success mb-2">Submit</button>
+                        <button type="submit" id="searchRecipe" class="btn btn-success mb-2">Submit</button>
                     </form>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Invalid recipe name!</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Please enter a recipe to search
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="most-searched mt-3">
                         <h5>
                             Most Searched
@@ -287,8 +308,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-    <script src="./assets/js/recipe.js"></script>
-    <script src="./assets/js/nutrition.js"></script>
+    <script type="module" src="./assets/js/recipe.js"></script>
+    <script type="module" src="./assets/js/nutrition.js"></script>
 
 
 </html>
