@@ -35,20 +35,15 @@ p {
 }
 
 .filters {
-    height: 80vh;
+    height: 40vh;
     padding: 20px;
     background: rgb(38, 178, 184);
     background: linear-gradient(45deg, rgba(38, 178, 184, 1) 0%, rgba(136, 175, 97, 1) 100%);
     border-radius: 35px;
 }
 
-.cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-.card {
-    margin-bottom: 20px;
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: contain;
 }
