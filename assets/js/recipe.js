@@ -1,11 +1,11 @@
 import { RECIPE_API_KEY } from "./config.js";
 import { RECIPE_APP_ID } from "./config.js";
 
-let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}`;
+let base_url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}`;
 
-function fetchRecipes(queryString) {
-  url += `&q=${queryString}`;
-  fetch(url)
+function fetchRecipes(queryUrl, queryString) {
+  queryUrl += `&q=${queryString}`;
+  fetch(queryUrl)
     .then((response) => response.json())
     .then((data) => {
       createRecipeCards(data.hits);
@@ -21,27 +21,29 @@ $(document).ready(function () {
     var recipeInput = $("#recipe").val().trim();
     if (recipeInput) {
       var allergiesSelected = $("#allergiesSelect").val() || [];
-      allergiesSelected = addFilterToUrl("health", allergiesSelected);
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
       var dietsSelected = $("#dietsSelect").val() || [];
-      dietsSelected = addFilterToUrl("diet", dietsSelected);
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
       var caloriesSelected = parseInt($("#caloriesRange").val());
-      caloriesSelected = addFilterToUrl("calories", [
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
         caloriesSelected.toString(),
       ]);
-      fetchRecipes(recipeInput);
+      fetchRecipes(calUrl, recipeInput);
     } else {
       $("#exampleModal").modal("show");
     }
   });
 });
 
-function addFilterToUrl(key, array) {
+function addFilterToUrl(url, key, array) {
   for (let i = 0; i < array.length; i++) {
     url += `&${key}=${array[i]}`;
   }
+  return url;
 }
 
 function createRecipeCards(inputData) {
+  $("#recipesDiv").empty();
   const mainDiv = $("<div>")
     .addClass("row justify-content-center")
     .attr("id", "cardRow");
