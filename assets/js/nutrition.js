@@ -52,6 +52,11 @@ function getArray() {
     // Get the content of the textarea
     var str = document.getElementById("ingredientTextArea").value;
 
+    if(!str){
+      alert('Please enter some ingredients!');
+      return;
+    }
+
     // Split the content into an array using commas as the delimiter
     recipeIngredients = str.split(',');
 
