@@ -57,6 +57,11 @@ function getArray() {
       return;
     }
 
+    if (!str.includes(",")){
+      alert('Please add commas between each ingredient!')
+      return;
+    }
+
     // Split the content into an array using commas as the delimiter
     recipeIngredients = str.split(',');
 
@@ -73,7 +78,7 @@ function createTable() {
     var nutriDiv2 = $("<div class='col-md-12'>");
 
     // create table
-    var table = $("<table class='table table-striped' style='margin-top: 30px; border: 1px solid #000;'>");
+    var table = $("<table class='table table-striped' style='margin-top: 30px; border: 1px solid #808080;'>");
 
     // table header
     var headerRow = $("<tr>")
