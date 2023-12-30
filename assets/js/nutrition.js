@@ -38,10 +38,10 @@ function getData(callSearchWord) {
 
 function getArray() {
     // Get the content of the textarea
-    var textareaContent = document.getElementById('demo').value;
+    var str = document.getElementById("ingredientTextArea").value;
 
     // Split the content into an array using commas as the delimiter
-    recipeIngredients = textareaContent.split(',');
+    recipeIngredients = str.split(',');
 
     // Trim each string to remove leading and trailing whitespaces
     recipeIngredients = recipeIngredients.map(function (str) {
@@ -52,12 +52,19 @@ function getArray() {
     console.log(recipeIngredients);
   }
 
-$("#submitBtn").on("click", function() {
+
+
+$("#submitBtn").click(function (event) {
+      event.preventDefault();
+
+      
+  
     
       getArray();
-      //console.log(recipeIngredients)
+      console.log(recipeIngredients)
 
-    for(i=0;i<recipeIngredients.length;i++){
+    for(let i=0;i<recipeIngredients.length;i++){
+     
 
         getData(recipeIngredients[i]);
       
@@ -65,12 +72,12 @@ $("#submitBtn").on("click", function() {
     }
 
 });
-
+/* 
 $("#clearBtn").on("click", function() {
     
   $("#demo").text("");
 
-});
+}); */
 /* 
 <textarea name="" id="demo" cols="30" rows="10" class="form-control">1 cup rice, 100 grams chickpeas</textarea>
 
