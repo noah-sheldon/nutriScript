@@ -1,23 +1,35 @@
-var nutriEndPoint = "https://api.edamam.com/api/nutrition-data";
-var appKey = "17bd128ddf8ca68645f972ccdade2f3a";
-var appId = "b30b69ec";
+import { NUTRITION_API_KEY } from "./config.js";
+import { NUTRITION_API_ID } from "./config.js";
+
+var nutriEndPoint = "https://api.edamam.com/api/nutrition-details";
 var caloriesTotal = 0;
 var weightTotal = 0;
 var recipeIngredients = [];
 
-function getData(callSearchWord) {
+function getData(ingreArray) {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    ingr: ingreArray,
+  });
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
   var queryURL =
     "" +
     nutriEndPoint +
     "?app_id=" +
-    appId +
+    NUTRITION_API_ID +
     "&app_key=" +
-    appKey +
-    "&nutrition-type=cooking&ingr=" +
-    callSearchWord +
-    "";
+    NUTRITION_API_KEY;
 
-  fetch(queryURL)
+  fetch(queryURL, requestOptions)
     .then(function (data) {
       return data.json();
     })
@@ -28,21 +40,23 @@ function getData(callSearchWord) {
 }
 
 function getSummaryInfo(inputData) {
-  var tableRow = $("<tr>");
+  for (let i = 0; i < inputData.length; i++) {
+    var tableRow = $("<tr>");
 
-  const firstValue = Object.values(inputData.ingredients[0])[0];
-  $("#nutriTbody")
-    .append(tableRow)
-    .append("<td>" + firstValue + "</td>")
-    .append("<td>" + inputData.calories + " kcal</td>")
-    .append("<td>" + inputData.totalWeight.toFixed(0) + " grams</td>");
+    const firstValue = Object.values(inputData.ingredients[i])['text'];
+    $("#nutriTbody")
+      .append(tableRow)
+      .append("<td>" + firstValue + "</td>")
+      .append("<td>" + inputData.calories + " kcal</td>")
+      .append("<td>" + inputData.totalWeight.toFixed(0) + " grams</td>");
 
-  // Update the total calories and weight
-  caloriesTotal += inputData.calories;
-  weightTotal += inputData.totalWeight;
+    // Update the total calories and weight
+    caloriesTotal += inputData.calories;
+    weightTotal += inputData.totalWeight;
 
-  // Update the totals row
-  updateTotalsRow();
+    // Update the totals row
+    updateTotalsRow();
+  }
 }
 
 function updateTotalsRow() {
@@ -83,10 +97,7 @@ function getArray() {
   });
 
   createTable();
-
-  for (let i = 0; i < recipeIngredients.length; i++) {
-    getData(recipeIngredients[i]);
-  }
+  getData(recipeIngredients);
 }
 
 function createTable() {
