@@ -60,13 +60,12 @@ function updateTotalsRow() {
 }
 
 function getArray() {
+  $("#nutritionDiv").empty();
   // Get the content of the textarea
   var str = document.getElementById("ingredientTextArea").value;
 
   if (!str || !str.includes(",")) {
-    $("#warningText").text(
-      "Please add your ingredients seperated by commas as shown"
-    );
+    $("#warningText").text("Enter ingredients!");
     $("#contentAlert").modal("show");
     return;
   }
@@ -102,7 +101,7 @@ function createTable() {
   table.append(tableBody);
 
   // append the table to the nutriForm
-  $("#nutriForm").append(nutriDiv).append(nutriDiv2).append(table);
+  $("#nutritionDiv").append(nutriDiv).append(nutriDiv2).append(table);
 }
 
 $("#submitBtn").click(function (event) {
