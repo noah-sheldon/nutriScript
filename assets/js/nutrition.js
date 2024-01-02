@@ -127,13 +127,9 @@ function getIngredients() {
   // Get the content of the textarea
   var str = document.getElementById("ingredientTextArea").value;
 
-  if (!str) {
-    alert("Please enter some ingredients!");
-    return;
-  }
-
-  if (!str.includes(",")) {
-    alert("Please add commas between each ingredient!");
+  if (!str || !str.includes(",")) {
+    $("#warningText").text("Enter ingredients!");
+    $("#contentAlert").modal("show");
     return;
   }
 
