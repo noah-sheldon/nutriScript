@@ -35,7 +35,7 @@ p {
 }
 
 .filters {
-    height: 40vh;
+    height: 60vh;
     padding: 20px;
     background: rgb(38, 178, 184);
     background: linear-gradient(45deg, rgba(38, 178, 184, 1) 0%, rgba(136, 175, 97, 1) 100%);
