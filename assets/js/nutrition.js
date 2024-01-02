@@ -1,10 +1,8 @@
 import { NUTRITION_API_KEY } from "./config.js";
 import { NUTRITION_API_ID } from "./config.js";
 
-var nutriEndPoint = "https://api.edamam.com/api/nutrition-details";
-var caloriesTotal = 0;
-var weightTotal = 0;
-var recipeIngredients = [];
+let nutriEndPoint = "https://api.edamam.com/api/nutrition-details";
+let recipeIngredients = [];
 
 function getData(ingreArray) {
   var myHeaders = new Headers();
@@ -34,46 +32,97 @@ function getData(ingreArray) {
       return data.json();
     })
     .then(function (data) {
-      console.log(data);
-      getSummaryInfo(data);
+      appendNutritionElements(data);
     });
 }
 
-function getSummaryInfo(inputData) {
-  for (let i = 0; i < inputData.length; i++) {
-    var tableRow = $("<tr>");
+function appendNutritionElements(recipeData) {
+  $("#nutritionDiv").empty();
 
-    const firstValue = Object.values(inputData.ingredients[i])['text'];
-    $("#nutriTbody")
-      .append(tableRow)
-      .append("<td>" + firstValue + "</td>")
-      .append("<td>" + inputData.calories + " kcal</td>")
-      .append("<td>" + inputData.totalWeight.toFixed(0) + " grams</td>");
+  let nutritionChild = `<div class="container mt-4">
 
-    // Update the total calories and weight
-    caloriesTotal += inputData.calories;
-    weightTotal += inputData.totalWeight;
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>General Information</h2>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><strong>Calories:</strong> <span id="calories"></span>
+                                        kcal</li>
+                                    <li class="list-group-item"><strong>Total Weight:</strong> <span
+                                            id="totalWeight"></span> g</li>
+                                    <li class="list-group-item"><strong>Diet Labels:</strong> <span
+                                            id="dietLabels"></span></li>
+                                    <li class="list-group-item"><strong>Health Labels:</strong> <span
+                                            id="healthLabels"></span></li>
+                                </ul>
+                            </div>
 
-    // Update the totals row
-    updateTotalsRow();
-  }
+                            
+                        </div>
+
+                        <div class="mt-4">
+                            <h2>Ingredients</h2>
+                            <ul class="list-group" id="ingredientsList"></ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h2>Additional Information</h2>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Cuisine Type:</strong> <span
+                                        id="cuisineType"></span></li>
+                                <li class="list-group-item"><strong>Meal Type:</strong> <span id="mealType"></span></li>
+                                <li class="list-group-item"><strong>Dish Type:</strong> <span id="dishType"></span></li>
+                            </ul>
+                        </div>
+                        <div class="container mt-5">
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h2>Percentage of Nutrients by Daily intake</h2>
+                                <canvas id="totalNutrientsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    </div>`;
+  $("#nutritionDiv").append(nutritionChild);
+  displayData(recipeData);
 }
 
-function updateTotalsRow() {
-  // Remove the existing totals row
-  $("#totalsRow").remove();
+function displayData(jsonData) {
+  $("#calories").text(jsonData.calories);
+  $("#totalWeight").text(jsonData.totalWeight);
+  $("#dietLabels").text(jsonData.dietLabels.join(", "));
+  $("#healthLabels").text(jsonData.healthLabels.join(", "));
+  var ingredientsList = $("#ingredientsList");
+  ingredientsList.empty();
+  jsonData.ingredients.forEach(function (ingredient) {
+    ingredientsList.append(
+      "<li class='list-group-item'>" + ingredient.text + "</li>"
+    );
+  });
+  $("#cuisineType").text(jsonData.cuisineType.join(", "));
+  $("#mealType").text(jsonData.mealType.join(", "));
+  $("#dishType").text(jsonData.dishType.join(", "));
 
-  // Create a new totals row
-  var totalsRow = $('<tr class="table-secondary" id="totalsRow">')
-    .append("<th>Total</th>")
-    .append("<th>" + caloriesTotal.toFixed(0) + " KCAL</th>")
-    .append("<th>" + weightTotal.toFixed(0) + " grams</th>");
-
-  // Append the totals row to the table body
-  $("#nutriTbody").append(totalsRow);
+  const labels = Object.values(jsonData.totalDaily).map((x) => x.label);
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Total Nutrients",
+        data: Object.values(jsonData.totalDaily).map((x) => x.quantity),
+      },
+    ],
+  };
+  var totChart = new Chart(document.getElementById("totalNutrientsChart"), {
+    type: "doughnut",
+    data: data,
+    options: {
+      responsive: true,
+      legend: true,
+    },
+  });
 }
 
-function getArray() {
+function getIngredients() {
   $("#nutritionDiv").empty();
   // Get the content of the textarea
   var str = document.getElementById("ingredientTextArea").value;
@@ -96,37 +145,10 @@ function getArray() {
     return str.trim();
   });
 
-  createTable();
   getData(recipeIngredients);
-}
-
-function createTable() {
-  var nutriDiv = $("<div class='nutri-result'>");
-  var nutriDiv2 = $("<div class='col-md-12'>");
-
-  // create table
-  var table = $(
-    "<table class='table table-striped' style='margin-top: 30px; border: 1px solid #808080;'>"
-  );
-
-  // table header
-  var headerRow = $("<tr>")
-    .append("<th scope='col' style='width: 40%;'>Quantity / Unit / Food</th>")
-    .append("<th scope='col' style='width: 30%;'>Calories</th>")
-    .append("<th scope='col' style='width: 30%;'>Weight</th>");
-
-  $("<thead class='table-secondary'>").append(headerRow).appendTo(table);
-
-  // table body
-  var tableBody = $("<tbody id='nutriTbody'>");
-  table.append(tableBody);
-
-  // append the table to the nutriForm
-  $("#nutritionDiv").append(nutriDiv).append(nutriDiv2).append(table);
 }
 
 $("#submitBtn").click(function (event) {
   event.preventDefault();
-  getArray();
-  console.log(recipeIngredients);
+  getIngredients();
 });
