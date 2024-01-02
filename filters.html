@@ -67,6 +67,75 @@
                         <input type="range" class="form-control-range" id="caloriesRange" name="calories" min="1" max="5000" value="1" oninput="caloriesValue.value = caloriesRange.value">
                         <output id="caloriesValue" name="caloriesValue" for="calories">1</output>
                     </div>
+                    <!-- Meal Type Dropdown -->
+                    <div class="form-group">
+                        <label for="mealTypeSelect">Meal Type</label>
+                        <select class="form-control selectpicker" id="mealTypeSelect" multiple data-live-search="true">
+                            <option value="breakfast">Breakfast</option>
+                            <option value="brunch">Brunch</option>
+                            <option value="lunch-dinner">Lunch/Dinner</option>
+                            <option value="snack">Snack</option>
+                            <option value="teatime">Teatime</option>
+                        </select>
+                    </div>
+                    <!-- Dish Type Dropdown -->
+                    <div class="form-group">
+                        <label for="dishTypeSelect">Dish Type</label>
+                        <select class="form-control selectpicker" id="dishTypeSelect" multiple data-live-search="true">
+                            <option value="alcohol-cocktail">Alcohol Cocktail</option>
+                            <option value="biscuits-and-cookies">Biscuits and Cookies</option>
+                            <option value="bread">Bread</option>
+                            <option value="cereals">Cereals</option>
+                            <option value="condiments-and-sauces">Condiments and Sauces</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="drinks">Drinks</option>
+                            <option value="egg">Egg</option>
+                            <option value="ice-cream-and-custard">Ice Cream and Custard</option>
+                            <option value="main-course">Main Course</option>
+                            <option value="pancake">Pancake</option>
+                            <option value="pasta">Pasta</option>
+                            <option value="pastry">Pastry</option>
+                            <option value="pies-and-tarts">Pies and Tarts</option>
+                            <option value="pizza">Pizza</option>
+                            <option value="preps">Preps</option>
+                            <option value="preserve">Preserve</option>
+                            <option value="salad">Salad</option>
+                            <option value="sandwiches">Sandwiches</option>
+                            <option value="seafood">Seafood</option>
+                            <option value="side-dish">Side Dish</option>
+                            <option value="soup">Soup</option>
+                            <option value="special-occasions">Special Occasions</option>
+                            <option value="starter">Starter</option>
+                            <option value="sweets">Sweets</option>
+                        </select>
+                    </div>
+                    <!-- Cuisine Type Dropdown -->
+                    <div class="form-group">
+                    <label for="cuisineSelect">Cuisine Type</label>
+                        <select class="form-control selectpicker" id="cuisineSelect" multiple data-live-search="true">
+                         <option value="american">American</option>
+                         <option value="asian">Asian</option>
+                         <option value="british">British</option>
+                         <option value="caribbean">Caribbean</option>
+                         <option value="central-europe">Central Europe</option>
+                         <option value="chinese">Chinese</option>
+                         <option value="eastern-europe">Eastern Europe</option>
+                         <option value="french">French</option>
+                         <option value="greek">Greek</option>
+                         <option value="indian">Indian</option>
+                         <option value="italian">Italian</option>
+                         <option value="japanese">Japanese</option>
+                         <option value="korean">Korean</option>
+                         <option value="kosher">Kosher</option>
+                         <option value="mediterranean">Mediterranean</option>
+                         <option value="mexican">Mexican</option>
+                         <option value="middle-eastern">Middle Eastern</option>
+                         <option value="nordic">Nordic</option>
+                         <option value="south-american">South American</option>
+                         <option value="south-east-asian">South East Asian</option>
+                         <option value="world">World</option>
+                     </select>
+                </div>
                 </div>
             </div>
         </div>
