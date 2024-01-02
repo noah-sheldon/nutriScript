@@ -32,7 +32,18 @@ function getData(ingreArray) {
       return data.json();
     })
     .then(function (data) {
+
+       if ('error' in data) {
+
+        $("#warningText").text("The ingedients you provided are not in our database or you have a spelling mistake; please check you spelling! ");
+        $("#contentAlert").modal("show");
+
+        return;
+        
+      }
+            
       appendNutritionElements(data);
+      
     });
 }
 
@@ -128,7 +139,7 @@ function getIngredients() {
   var str = document.getElementById("ingredientTextArea").value;
 
   if (!str || !str.includes(",")) {
-    $("#warningText").text("Enter ingredients!");
+    $("#warningText").text("Enter ingredients seperated by commas!");
     $("#contentAlert").modal("show");
     return;
   }
