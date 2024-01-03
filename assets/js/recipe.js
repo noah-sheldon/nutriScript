@@ -78,11 +78,18 @@ $(document).ready(function () {
       var dietsSelected = $("#dietsSelect").val() || [];
       let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
       var cuisineSelected = $("#cuisineSelect").val() || [];
+      let cusineUrl = addFilterToUrl(dietUrl, "cuisineType", cuisineSelected);
       var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      let mealTypeUrl = addFilterToUrl(cusineUrl, "mealType", mealTypeSelected);
       var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      let dishTypeUrl = addFilterToUrl(
+        mealTypeUrl,
+        "dishType",
+        dishTypeSelected
+      );
       var caloriesSelected = parseInt($("#caloriesRange").val());
       var caloriesVal = parseInt($("#caloriesValue").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
+      let calUrl = addFilterToUrl(dishTypeUrl, "calories", [
         caloriesSelected.toString(),
       ]);
       checkAllergiesDietCalories(
@@ -119,6 +126,7 @@ function checkAllergiesDietCalories(
   localStorage.setItem("dishTypeSelected", dishTypeSelected);
   localStorage.setItem("caloriesVal", caloriesVal);
 }
+
 $(document).ready(function () {
   $(".pasta").click(function (event) {
     event.preventDefault();
@@ -129,11 +137,18 @@ $(document).ready(function () {
       var dietsSelected = $("#dietsSelect").val() || [];
       let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
       var cuisineSelected = $("#cuisineSelect").val() || [];
+      let cusineUrl = addFilterToUrl(dietUrl, "cuisineType", cuisineSelected);
       var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      let mealTypeUrl = addFilterToUrl(cusineUrl, "mealType", mealTypeSelected);
       var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      let dishTypeUrl = addFilterToUrl(
+        mealTypeUrl,
+        "dishType",
+        dishTypeSelected
+      );
       var caloriesSelected = parseInt($("#caloriesRange").val());
       var caloriesVal = parseInt($("#caloriesValue").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
+      let calUrl = addFilterToUrl(dishTypeUrl, "calories", [
         caloriesSelected.toString(),
       ]);
       checkAllergiesDietCalories(
@@ -162,11 +177,18 @@ $(document).ready(function () {
       var dietsSelected = $("#dietsSelect").val() || [];
       let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
       var cuisineSelected = $("#cuisineSelect").val() || [];
+      let cusineUrl = addFilterToUrl(dietUrl, "cuisineType", cuisineSelected);
       var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      let mealTypeUrl = addFilterToUrl(cusineUrl, "mealType", mealTypeSelected);
       var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      let dishTypeUrl = addFilterToUrl(
+        mealTypeUrl,
+        "dishType",
+        dishTypeSelected
+      );
       var caloriesSelected = parseInt($("#caloriesRange").val());
       var caloriesVal = parseInt($("#caloriesValue").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
+      let calUrl = addFilterToUrl(dishTypeUrl, "calories", [
         caloriesSelected.toString(),
       ]);
       checkAllergiesDietCalories(
@@ -195,11 +217,18 @@ $(document).ready(function () {
       var dietsSelected = $("#dietsSelect").val() || [];
       let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
       var cuisineSelected = $("#cuisineSelect").val() || [];
+      let cusineUrl = addFilterToUrl(dietUrl, "cuisineType", cuisineSelected);
       var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      let mealTypeUrl = addFilterToUrl(cusineUrl, "mealType", mealTypeSelected);
       var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      let dishTypeUrl = addFilterToUrl(
+        mealTypeUrl,
+        "dishType",
+        dishTypeSelected
+      );
       var caloriesSelected = parseInt($("#caloriesRange").val());
       var caloriesVal = parseInt($("#caloriesValue").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
+      let calUrl = addFilterToUrl(dishTypeUrl, "calories", [
         caloriesSelected.toString(),
       ]);
       checkAllergiesDietCalories(
@@ -228,11 +257,18 @@ $(document).ready(function () {
       var dietsSelected = $("#dietsSelect").val() || [];
       let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
       var cuisineSelected = $("#cuisineSelect").val() || [];
+      let cusineUrl = addFilterToUrl(dietUrl, "cuisineType", cuisineSelected);
       var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      let mealTypeUrl = addFilterToUrl(cusineUrl, "mealType", mealTypeSelected);
       var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      let dishTypeUrl = addFilterToUrl(
+        mealTypeUrl,
+        "dishType",
+        dishTypeSelected
+      );
       var caloriesSelected = parseInt($("#caloriesRange").val());
       var caloriesVal = parseInt($("#caloriesValue").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
+      let calUrl = addFilterToUrl(dishTypeUrl, "calories", [
         caloriesSelected.toString(),
       ]);
       checkAllergiesDietCalories(
@@ -244,86 +280,6 @@ $(document).ready(function () {
         dishTypeSelected,
         caloriesVal
       );
-      fetchRecipes(calUrl, recipeInput);
-    } else {
-      $("#exampleModal").modal("show");
-    }
-  });
-});
-
-$(document).ready(function () {
-  $(".pasta").click(function (event) {
-    event.preventDefault();
-    var recipeInput = $(".pasta").text();
-    if (recipeInput) {
-      var allergiesSelected = $("#allergiesSelect").val() || [];
-      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
-      var dietsSelected = $("#dietsSelect").val() || [];
-      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
-      var caloriesSelected = parseInt($("#caloriesRange").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
-        caloriesSelected.toString(),
-      ]);
-      fetchRecipes(calUrl, recipeInput);
-    } else {
-      $("#exampleModal").modal("show");
-    }
-  });
-});
-
-$(document).ready(function () {
-  $(".cake").click(function (event) {
-    event.preventDefault();
-    var recipeInput = $(".cake").text();
-    if (recipeInput) {
-      var allergiesSelected = $("#allergiesSelect").val() || [];
-      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
-      var dietsSelected = $("#dietsSelect").val() || [];
-      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
-      var caloriesSelected = parseInt($("#caloriesRange").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
-        caloriesSelected.toString(),
-      ]);
-      fetchRecipes(calUrl, recipeInput);
-    } else {
-      $("#exampleModal").modal("show");
-    }
-  });
-});
-
-$(document).ready(function () {
-  $(".mushroom").click(function (event) {
-    event.preventDefault();
-    var recipeInput = $(".mushroom").text();
-    if (recipeInput) {
-      var allergiesSelected = $("#allergiesSelect").val() || [];
-      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
-      var dietsSelected = $("#dietsSelect").val() || [];
-      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
-      var caloriesSelected = parseInt($("#caloriesRange").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
-        caloriesSelected.toString(),
-      ]);
-      fetchRecipes(calUrl, recipeInput);
-    } else {
-      $("#exampleModal").modal("show");
-    }
-  });
-});
-
-$(document).ready(function () {
-  $(".chicken").click(function (event) {
-    event.preventDefault();
-    var recipeInput = $(".chicken").text();
-    if (recipeInput) {
-      var allergiesSelected = $("#allergiesSelect").val() || [];
-      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
-      var dietsSelected = $("#dietsSelect").val() || [];
-      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
-      var caloriesSelected = parseInt($("#caloriesRange").val());
-      let calUrl = addFilterToUrl(dietUrl, "calories", [
-        caloriesSelected.toString(),
-      ]);
       fetchRecipes(calUrl, recipeInput);
     } else {
       $("#exampleModal").modal("show");
