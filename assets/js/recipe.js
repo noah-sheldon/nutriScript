@@ -54,6 +54,20 @@ function fetchRecipes(queryUrl, queryString) {
     });
 }
 
+$("#clearFilters").click(function (event) {
+  localStorage.clear();
+  event.preventDefault();
+  $("#allergiesSelect").val([]).trigger("change");
+  $("#dietsSelect").val([]).trigger("change");
+  $("#caloriesRange").val("5000");
+  $("#caloriesValue").val("5000");
+  $("#recipe").val("");
+  $("#recipesDiv").empty();
+  $("#mealTypeSelect").val([]).trigger("change");
+  $("#cuisineSelect").val([]).trigger("change");
+  $("#dishTypeSelect").val([]).trigger("change");
+});
+
 $(document).ready(function () {
   $("#searchRecipe").click(function (event) {
     event.preventDefault();
