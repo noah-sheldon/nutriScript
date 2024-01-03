@@ -56,6 +56,7 @@ function fetchRecipes(queryUrl, queryString) {
 }
 
 $('#clearFilters').click(function (event) {
+  localStorage.clear();
   event.preventDefault();
   $('#allergiesSelect').val([]).trigger('change');
   $('#dietsSelect').val([]).trigger('change');
