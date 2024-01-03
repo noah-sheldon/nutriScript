@@ -36,6 +36,13 @@ The landing page for the application looks like the following on a standard HD s
 
 <!-- ![alt text](./assets/images/scr_1.png) -->
 
+## Screenshots
+
+![Homepage Screenshot](https://github.com/noah-sheldon/nutriScript/assets/145556007/22331f96-c540-4a50-ba74-4939e5a9d60f)
+![Recipe View Screenshot](https://github.com/noah-sheldon/nutriScript/assets/145556007/00742e35-053e-4adc-b172-9bfcb5a3805d)
+![Nutrition View Screenshot](https://github.com/noah-sheldon/nutriScript/assets/145556007/251fff17-a60c-4ccd-b273-6c88081fcbb1)
+
+
 ## Deployed Application
 
 The web page for the deployed application.
