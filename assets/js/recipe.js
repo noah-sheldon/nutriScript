@@ -39,6 +39,12 @@ function fetchAllergies() {
     let allergies = localStorage.getItem("caloriesVal");
     $("#caloriesValue").val(allergies);
   }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 14f670b61aa36a92f6d49099fe5b995a175aefb9
 }
 
 fetchAllergies();
@@ -88,6 +94,7 @@ $(document).ready(function () {
       let calUrl = addFilterToUrl(dietUrl, "calories", [
         caloriesSelected.toString(),
       ]);
+<<<<<<< HEAD
       checkAllergiesDietCalories(
         allergiesSelected,
         dietsSelected,
@@ -97,6 +104,9 @@ $(document).ready(function () {
         dishTypeSelected,
         caloriesVal
       );
+=======
+      checkAllergiesDietCalories(allergiesSelected, dietsSelected, caloriesSelected, cuisineSelected, mealTypeSelected, dishTypeSelected, caloriesVal)
+>>>>>>> 14f670b61aa36a92f6d49099fe5b995a175aefb9
       fetchRecipes(calUrl, recipeInput);
     } else {
       $("#exampleModal").modal("show");
@@ -104,7 +114,11 @@ $(document).ready(function () {
   });
 });
 
+<<<<<<< HEAD
 
+=======
+// fuction to get all saved data from localstorage.
+>>>>>>> 14f670b61aa36a92f6d49099fe5b995a175aefb9
 function checkAllergiesDietCalories(allergiesSelected, dietsSelected, caloriesSelected, cuisineSelected, mealTypeSelected, dishTypeSelected, caloriesVal) {
   localStorage.setItem("allergiesSelected", allergiesSelected);
   localStorage.setItem("dietsSelected", dietsSelected);
@@ -113,6 +127,10 @@ function checkAllergiesDietCalories(allergiesSelected, dietsSelected, caloriesSe
   localStorage.setItem("mealTypeSelected", mealTypeSelected);
   localStorage.setItem("dishTypeSelected", dishTypeSelected);
   localStorage.setItem("caloriesVal", caloriesVal);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14f670b61aa36a92f6d49099fe5b995a175aefb9
 }
 $(document).ready(function () {
   $(".pasta").click(function (event) {
