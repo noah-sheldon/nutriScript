@@ -186,6 +186,39 @@
                     <div id="recipesDiv" class="mt-3">
 
                     </div>
+    
+                    <label for="filterDropdown">Sort by:</label>
+                    <select id="filterDropdown">
+                      <option value="default">Select</option>
+                      <option value="highestToLowest">Highest to Lowest Calories</option>
+                    </select>
+                    
+                    <script>
+                      document.getElementById('filterDropdown').addEventListener('change', function() {
+                        var sortBy = this.value;
+                        var list = document.getElementById('sortableList');
+                        var items = Array.from(list.children);
+                    
+                        if (sortBy === 'highestToLowest') {
+                          items.sort(function(a, b) {
+                            var aCalories = parseInt(a.getAttribute('data-calories'));
+                            var bCalories = parseInt(b.getAttribute('data-calories'));
+                            return bCalories - aCalories;
+                          });
+                        } else {
+                          // Handle other sorting options here if needed
+                        }
+                    
+                        // Clear the current list
+                        list.innerHTML = '';
+                    
+                        // Append the sorted items
+                        items.forEach(function(item) {
+                          list.appendChild(item);
+                        });
+                      });
+                    </script>
+                    
                 </div>
 
             </div>
