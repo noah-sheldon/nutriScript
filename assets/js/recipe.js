@@ -1,51 +1,46 @@
 import { RECIPE_API_KEY } from "./config.js";
 import { RECIPE_APP_ID } from "./config.js";
 
-let base_url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}`;
+let base_url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}&imageSize=THUMBNAIL`;
 
 // fuction to get selected items from local storage.
 function fetchAllergies() {
-  if( "allergiesSelected" in localStorage ) {
+  if ("allergiesSelected" in localStorage) {
     let allergies = localStorage.getItem("allergiesSelected");
-    $('#allergiesSelect').val(allergies.split(",")); 
+    $("#allergiesSelect").val(allergies.split(","));
   }
 
-  if( "dietsSelected" in localStorage ) {
+  if ("dietsSelected" in localStorage) {
     let allergies = localStorage.getItem("dietsSelected");
     $("#dietsSelect").val(allergies.split(","));
   }
 
-  if( "caloriesSelected" in localStorage ) {
+  if ("caloriesSelected" in localStorage) {
     let allergies = localStorage.getItem("caloriesSelected");
     $("#caloriesRange").val(allergies);
   }
 
-  if( "cuisineSelected" in localStorage ) {
+  if ("cuisineSelected" in localStorage) {
     let allergies = localStorage.getItem("cuisineSelected");
     $("#cuisineSelect").val(allergies.split(","));
   }
-  
-  if( "mealTypeSelected" in localStorage ) {
+
+  if ("mealTypeSelected" in localStorage) {
     let allergies = localStorage.getItem("mealTypeSelected");
     $("#mealTypeSelect").val(allergies.split(","));
   }
 
-  if( "dishTypeSelected" in localStorage ) {
+  if ("dishTypeSelected" in localStorage) {
     let allergies = localStorage.getItem("dishTypeSelected");
     $("#dishTypeSelect").val(allergies.split(","));
   }
 
-  if( "caloriesVal" in localStorage ) {
+  if ("caloriesVal" in localStorage) {
     let allergies = localStorage.getItem("caloriesVal");
     $("#caloriesValue").val(allergies);
   }
-
-
- 
 }
 fetchAllergies();
-
-
 
 function fetchRecipes(queryUrl, queryString) {
   queryUrl += `&q=${queryString}`;
@@ -63,7 +58,7 @@ $(document).ready(function () {
   $("#searchRecipe").click(function (event) {
     event.preventDefault();
     var recipeInput = $("#recipe").val().trim();
-    if (recipeInput) {      
+    if (recipeInput) {
       var allergiesSelected = $("#allergiesSelect").val() || [];
       let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
       var dietsSelected = $("#dietsSelect").val() || [];
@@ -76,7 +71,15 @@ $(document).ready(function () {
       let calUrl = addFilterToUrl(dietUrl, "calories", [
         caloriesSelected.toString(),
       ]);
-      checkAllergiesDietCalories(allergiesSelected,dietsSelected,caloriesSelected,cuisineSelected,mealTypeSelected,dishTypeSelected,caloriesVal)
+      checkAllergiesDietCalories(
+        allergiesSelected,
+        dietsSelected,
+        caloriesSelected,
+        cuisineSelected,
+        mealTypeSelected,
+        dishTypeSelected,
+        caloriesVal
+      );
       fetchRecipes(calUrl, recipeInput);
     } else {
       $("#exampleModal").modal("show");
@@ -85,16 +88,234 @@ $(document).ready(function () {
 });
 
 // fuction to get all saved data from localstorage.
-function checkAllergiesDietCalories(allergiesSelected,dietsSelected,caloriesSelected,cuisineSelected,mealTypeSelected,dishTypeSelected,caloriesVal) {
-   localStorage.setItem("allergiesSelected", allergiesSelected);
-   localStorage.setItem("dietsSelected", dietsSelected);
-   localStorage.setItem("caloriesSelected", caloriesSelected);
-   localStorage.setItem("cuisineSelected", cuisineSelected);
-   localStorage.setItem("mealTypeSelected", mealTypeSelected);
-   localStorage.setItem("dishTypeSelected", dishTypeSelected);
-   localStorage.setItem("caloriesVal", caloriesVal);
-  
+function checkAllergiesDietCalories(
+  allergiesSelected,
+  dietsSelected,
+  caloriesSelected,
+  cuisineSelected,
+  mealTypeSelected,
+  dishTypeSelected,
+  caloriesVal
+) {
+  localStorage.setItem("allergiesSelected", allergiesSelected);
+  localStorage.setItem("dietsSelected", dietsSelected);
+  localStorage.setItem("caloriesSelected", caloriesSelected);
+  localStorage.setItem("cuisineSelected", cuisineSelected);
+  localStorage.setItem("mealTypeSelected", mealTypeSelected);
+  localStorage.setItem("dishTypeSelected", dishTypeSelected);
+  localStorage.setItem("caloriesVal", caloriesVal);
 }
+$(document).ready(function () {
+  $(".pasta").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".pasta").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var cuisineSelected = $("#cuisineSelect").val() || [];
+      var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      var caloriesVal = parseInt($("#caloriesValue").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      checkAllergiesDietCalories(
+        allergiesSelected,
+        dietsSelected,
+        caloriesSelected,
+        cuisineSelected,
+        mealTypeSelected,
+        dishTypeSelected,
+        caloriesVal
+      );
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".cake").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".cake").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var cuisineSelected = $("#cuisineSelect").val() || [];
+      var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      var caloriesVal = parseInt($("#caloriesValue").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      checkAllergiesDietCalories(
+        allergiesSelected,
+        dietsSelected,
+        caloriesSelected,
+        cuisineSelected,
+        mealTypeSelected,
+        dishTypeSelected,
+        caloriesVal
+      );
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".mushroom").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".mushroom").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var cuisineSelected = $("#cuisineSelect").val() || [];
+      var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      var caloriesVal = parseInt($("#caloriesValue").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      checkAllergiesDietCalories(
+        allergiesSelected,
+        dietsSelected,
+        caloriesSelected,
+        cuisineSelected,
+        mealTypeSelected,
+        dishTypeSelected,
+        caloriesVal
+      );
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".chicken").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".chicken").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var cuisineSelected = $("#cuisineSelect").val() || [];
+      var mealTypeSelected = $("#mealTypeSelect").val() || [];
+      var dishTypeSelected = $("#dishTypeSelect").val() || [];
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      var caloriesVal = parseInt($("#caloriesValue").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      checkAllergiesDietCalories(
+        allergiesSelected,
+        dietsSelected,
+        caloriesSelected,
+        cuisineSelected,
+        mealTypeSelected,
+        dishTypeSelected,
+        caloriesVal
+      );
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".pasta").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".pasta").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".cake").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".cake").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".mushroom").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".mushroom").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
+
+$(document).ready(function () {
+  $(".chicken").click(function (event) {
+    event.preventDefault();
+    var recipeInput = $(".chicken").text();
+    if (recipeInput) {
+      var allergiesSelected = $("#allergiesSelect").val() || [];
+      let allUrl = addFilterToUrl(base_url, "health", allergiesSelected);
+      var dietsSelected = $("#dietsSelect").val() || [];
+      let dietUrl = addFilterToUrl(allUrl, "diet", dietsSelected);
+      var caloriesSelected = parseInt($("#caloriesRange").val());
+      let calUrl = addFilterToUrl(dietUrl, "calories", [
+        caloriesSelected.toString(),
+      ]);
+      fetchRecipes(calUrl, recipeInput);
+    } else {
+      $("#exampleModal").modal("show");
+    }
+  });
+});
 
 function addFilterToUrl(url, key, array) {
   for (let i = 0; i < array.length; i++) {
