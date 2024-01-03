@@ -47,7 +47,11 @@ function fetchRecipes(queryUrl, queryString) {
   fetch(queryUrl)
     .then((response) => response.json())
     .then((data) => {
-      createRecipeCards(data.hits);
+      if (data.hits.length == 0) {
+        $("#noRecipeModal").modal("show");
+      } else {
+        createRecipeCards(data.hits);
+      }
     })
     .catch((error) => {
       console.log(`Error: ${error}`);
