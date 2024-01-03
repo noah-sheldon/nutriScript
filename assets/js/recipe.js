@@ -7,7 +7,7 @@ let base_url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIP
 function fetchAllergies() {
   if ("allergiesSelected" in localStorage) {
     let allergies = localStorage.getItem("allergiesSelected");
-    $("#allergiesSelect").val(allergies.split(","));
+    $('#allergiesSelect').val(allergies.split(","));
   }
 
   if ("dietsSelected" in localStorage) {
@@ -40,6 +40,7 @@ function fetchAllergies() {
     $("#caloriesValue").val(allergies);
   }
 }
+
 fetchAllergies();
 
 function fetchRecipes(queryUrl, queryString) {
@@ -53,6 +54,21 @@ function fetchRecipes(queryUrl, queryString) {
       console.log(`Error: ${error}`);
     });
 }
+
+$('#clearFilters').click(function (event) {
+  event.preventDefault();
+  $('#allergiesSelect').val([]).trigger('change');
+  $('#dietsSelect').val([]).trigger('change');
+  $('#caloriesRange').val('5000');
+  $('#caloriesValue').val('5000');
+  $('#recipe').val('');
+  $('#recipesDiv').empty();
+  $('#mealTypeSelect').val([]).trigger('change');
+  $('#cuisineSelect').val([]).trigger('change');
+  $('#dishTypeSelect').val([]).trigger('change');
+
+});
+
 
 $(document).ready(function () {
   $("#searchRecipe").click(function (event) {
@@ -87,16 +103,8 @@ $(document).ready(function () {
   });
 });
 
-// fuction to get all saved data from localstorage.
-function checkAllergiesDietCalories(
-  allergiesSelected,
-  dietsSelected,
-  caloriesSelected,
-  cuisineSelected,
-  mealTypeSelected,
-  dishTypeSelected,
-  caloriesVal
-) {
+
+function checkAllergiesDietCalories(allergiesSelected, dietsSelected, caloriesSelected, cuisineSelected, mealTypeSelected, dishTypeSelected, caloriesVal) {
   localStorage.setItem("allergiesSelected", allergiesSelected);
   localStorage.setItem("dietsSelected", dietsSelected);
   localStorage.setItem("caloriesSelected", caloriesSelected);
