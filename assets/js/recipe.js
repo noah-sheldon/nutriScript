@@ -1,7 +1,7 @@
 import { RECIPE_API_KEY } from "./config.js";
 import { RECIPE_APP_ID } from "./config.js";
 
-let base_url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}`;
+let base_url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${RECIPE_APP_ID}&app_key=${RECIPE_API_KEY}&imageSize=THUMBNAIL`;
 
 function fetchRecipes(queryUrl, queryString) {
   queryUrl += `&q=${queryString}`;
